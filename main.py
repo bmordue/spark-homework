@@ -36,14 +36,37 @@ class CompareAndSwitchTestCase(unittest.TestCase):
         compare_page.click_next()
 
         ### VERIFICATION
-        expected = 5
-        actual = compare_page.count_tariffs()
-        self.assertEqual(expected, actual)
 
-        compare_page.verify_expected_tariff()
+        expected_tariffs = [["Simple Saver October 2019", "1087.11"],
+          ["Simple Saver October 2019", "1111.11"],
+          ["Super Tracker", "1139.8"],
+          ["Digital Saver v1", "1141.06"],
+          ["Comfort Saver November 2019", "1201.76"]]
+
+
+        tariff_names = compare_page.extract_tariff_names()
+        print(tariff_names)
+        tariff_projections = compare_page.extract_tariff_projections()
+        print(tariff_projections)
+        actual_tariffs = zip(tariff_names, tariff_projections)
+        # actual_tariffs = compare_page.extract_tariffs()
+        actual = list(map(list, actual_tariffs))
+
+        self.assertEqual(expected_tariffs, actual)
+
+        # self.verify_tariffs(expected_tariffs, actual_tariffs)
 
     def tearDown(self):
         self.browser.close()
+
+    # def verify_tariffs(expected, actual):
+    #     self.assertEqual(len(expected_tariffs), len(actual_tariffs),
+    #         'did not find the expected number of tariffs')
+
+    #     for tariff in expected_tariffs:
+    #         self.verify_tariff(tariff, actual_tariffs)
+
+    # def verify_tariff()
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
