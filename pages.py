@@ -35,6 +35,9 @@ class ComparePage():
     def click_combined_quote(self):
         self.click(Locators.COMBINED_QUOTE_BTN)
 
+    def click_electricity_only(self):
+        self.click(Locators.ELECTRICITY_ONLY_BTN)
+
     def click_next(self):
         self.click(Locators.NEXT_BTN)
 
@@ -45,20 +48,9 @@ class ComparePage():
         self.click(Locators.BEDROOMS_DROP_DOWN)
         self.click(Locators.bedroom_number_selection(num_bedrooms))
 
-    def extract_tariffs(self):
-        time.sleep(2)
-        elements = self.browser.find_elements(*Locators.TARIFF_ELEMENTS)
-        extracted = []
-        for el in elements:
-            tariff_name_el = el.find_element_by_xpath("//h3/span[1]")
-            tariff_name = tariff_name_el.text
-            tariff_projection = el.find_element_by_xpath("//span[@class='dynamic tariff-projection']").text
-            extracted.append([tariff_name, tariff_projection])
-        return extracted
-
     def extract_tariff_names(self):
         time.sleep(2)
-        elements = self.browser.find_elements_by_xpath("//span[@class='dynamic tariff-name']")
+        elements = self.browser.find_elements(*Locators.TARIFF_NAMES)
         results = []
         for el in elements:
             if el.text:
@@ -66,9 +58,17 @@ class ComparePage():
         return results
 
     def extract_tariff_projections(self):
-        elements = self.browser.find_elements_by_xpath("//span[@class='dynamic tariff-projection']")
+        elements = self.browser.find_elements(*Locators.TARIFF_PROJECTIONS)
         results = []
         for el in elements:
             if el.text:
                 results.append(el.text)
         return results
+
+    def select_tariff(self, tariff_name):
+        time.sleep(2)
+        self.click(Locators.tariff_selection(tariff_name))
+
+    def extract_new_tariff(self):
+        time.sleep(2)
+        return self.browser.find_element(*Locators.SELECTED_TARIFF).text
