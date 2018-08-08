@@ -43,16 +43,26 @@ class CompareAndSwitchTestCase(unittest.TestCase):
           ["Digital Saver v1", "1141.06"],
           ["Comfort Saver November 2019", "1201.76"]]
 
-
         tariff_names = compare_page.extract_tariff_names()
-        print(tariff_names)
         tariff_projections = compare_page.extract_tariff_projections()
-        print(tariff_projections)
-        actual_tariffs = zip(tariff_names, tariff_projections)
-        # actual_tariffs = compare_page.extract_tariffs()
-        actual = list(map(list, actual_tariffs))
 
-        self.assertEqual(expected_tariffs, actual)
+        actual_tariffs = [[tariff_names[i], tariff_projections[i]] for i in range(len(tariff_names))]
+        # for i in len(tariff_names):
+        #     actual_tariffs.append()
+
+
+        # actual_tariffs = zip(tariff_names, tariff_projections)
+
+        # if (expected_tariffs_tuples == actual_tariffs):
+        #     print("tuple tariffs MATCH")
+        # else:
+        #     print("tuple tariffs DO NOT MATCH")
+
+
+
+        # actual = list(map(list, actual_tariffs))
+
+        self.assertEqual(expected_tariffs, actual_tariffs)
 
         # self.verify_tariffs(expected_tariffs, actual_tariffs)
 

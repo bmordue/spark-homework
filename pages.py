@@ -82,3 +82,10 @@ class ComparePage():
 				results.append(el.text)
 		return results
 
+	def extract_tariff_names_projections(self):
+		time.sleep(2)
+		name_elements = self.browser.find_elements_by_xpath("//span[@class='dynamic tariff-name']")
+		projection_elements = self.browser.find_elements_by_xpath("//span[@class='dynamic tariff-projection']")
+	#	result = [[name, proj] for a.text, b.text in name_elements, projection_elements if a.text is True]
+		print(result)
+
