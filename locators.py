@@ -11,15 +11,13 @@ class Locators(object):
     COMBINED_QUOTE_BTN = (By.XPATH, "//label[@class='spark-icon-radio-label both large']")
 
     NEXT_BTN = (By.XPATH, "//li[contains(@class, 'next') and contains(@class, 'button')]/span")
-#    NEXT_BTN = (By.XPATH, "//li[@class='button lime next']")
 
     SUPPLIER_NOT_KNOWN_RADIO = (By.XPATH, "//div[@id='wizard-p-1']/div[2]/div/div[3]/label[2]")
 
     BEDROOMS_DROP_DOWN = (By.XPATH, "//div[contains(@class, 'selectricWrapper')]")
 
     TARIFF_ELEMENTS = (By.XPATH, "//div[@class='tariff-block']")
-#    TARIFF_ELEMENTS = (By.XPATH, "//div")
 
     def bedroom_number_selection(num):
-    	xpath = "//div[@class='selectricItems']/ul/li[{}]".format(num + 1)
-    	return (By.XPATH, xpath)
+        xpath = "//div[@class='selectricItems']/ul/li[{}]".format(num + 1)
+        return (By.XPATH, xpath)

@@ -46,37 +46,13 @@ class CompareAndSwitchTestCase(unittest.TestCase):
         tariff_names = compare_page.extract_tariff_names()
         tariff_projections = compare_page.extract_tariff_projections()
 
+        # arrange extracted tariff names and projects as the fixture data for easy comparison
         actual_tariffs = [[tariff_names[i], tariff_projections[i]] for i in range(len(tariff_names))]
-        # for i in len(tariff_names):
-        #     actual_tariffs.append()
-
-
-        # actual_tariffs = zip(tariff_names, tariff_projections)
-
-        # if (expected_tariffs_tuples == actual_tariffs):
-        #     print("tuple tariffs MATCH")
-        # else:
-        #     print("tuple tariffs DO NOT MATCH")
-
-
-
-        # actual = list(map(list, actual_tariffs))
 
         self.assertEqual(expected_tariffs, actual_tariffs)
 
-        # self.verify_tariffs(expected_tariffs, actual_tariffs)
-
     def tearDown(self):
         self.browser.close()
-
-    # def verify_tariffs(expected, actual):
-    #     self.assertEqual(len(expected_tariffs), len(actual_tariffs),
-    #         'did not find the expected number of tariffs')
-
-    #     for tariff in expected_tariffs:
-    #         self.verify_tariff(tariff, actual_tariffs)
-
-    # def verify_tariff()
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
